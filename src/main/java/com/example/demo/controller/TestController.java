@@ -29,6 +29,18 @@ public class TestController {
         this.chatService = chatService;
     }
 
+    @GetMapping("index")
+    public String index(){
+        return "index";
+    }
+    @GetMapping("/Login")
+    public String Login(){
+        return "Login";
+    }
+    @GetMapping("/Register")
+    public String Register(){
+        return "Register";
+    }
     @GetMapping("/Wordpage_1")
     public String test(Model model) {
         String wordQuestion = "어근 1개를 정한다음 1개에서 파생되는 단어3가지를 JSON형식으로 출력해줘" +
@@ -166,7 +178,7 @@ public class TestController {
     }
 
 
-    @PostMapping("/checkWordAnswers")
+    @GetMapping("/checkWordAnswers")
     public String checkWordAnswers(@RequestParam List<String> userAnswers, @RequestParam("wordsJson") String wordsJson, Model model) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -186,3 +198,6 @@ public class TestController {
         return "wordQuizResult";
     }
 }
+/*뜻을 쓰게 하는 문제 단어를 쓰게 하는 문제로 나누기
+get , get(i).getMeaning().equals(userAnswers.get(i))고치기
+ */
